@@ -8,11 +8,11 @@ import {Todos} from './components/Todo'
 function App() {
   const [todos , setTodos] = useState([]);
 
-  fetch('http://localhost:3002/todos')
-  .then(async (res)=>{
-    const json = await res.json();
-    setTodos(json.todos);
-  } )
+  // fetch('http://localhost:3002/todos')
+  // .then(async (res)=>{
+  //   const json = await res.json();
+  //   setTodos(json.todos);
+  // } )
 return <div>
    < CreateTodo />
    <Todos todos = {todos}></Todos>
