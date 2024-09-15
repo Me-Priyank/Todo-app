@@ -3,7 +3,9 @@ const app = express();
 app.use(express.json());
 const {createTodo} = require('./types');
 const {updateTodo} = require('./types');
-const {todo} = require('./db');
+const {todos} = require('./db');
+const cors = require('cors');
+app.use(cors());
 
 
 app.post("/create",async (req,res)=>{
@@ -15,7 +17,7 @@ app.post("/create",async (req,res)=>{
         })
         return;
     }
-    await todo.create({
+    await todos.create({
         title : createPayload.title,
         description : createPayload.description
     })
@@ -25,10 +27,10 @@ app.post("/create",async (req,res)=>{
     })
 })
 
-app.get("/see",async (req,res)=>{
-    const allTodos = await todo.find();
+app.get("/todos",async (req,res)=>{
+    const allTodos = await todos.find();
     res.json({
-        allTodos
+        allTodos 
     })
 })
 
@@ -41,7 +43,7 @@ app.put("/completed",async (req,res)=>{
         })
         return;
     }
-    await todo.update({
+    await todos.update({ // update syntax require 2 arguments . 1st - what needs to be changed , 2nd - what should be the changed thing
         _id: req.body.id
     },{
         completed : true

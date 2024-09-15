@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('your mongodb instance/Todo-app');
+mongoose.connect('your mongodb instance/todos');
 
 const todoSchema = new mongoose.Schema({
     title : String,
     description : String,
-    completed : Boolean
+    completed : {
+        type : Boolean,
+        default : false
+    }
 })
 
-const todo = mongoose.model('todo',todoSchema)
+const todos = mongoose.model('todos',todoSchema)
 
 module.exports =  {
-    todo
+    todos
 }
