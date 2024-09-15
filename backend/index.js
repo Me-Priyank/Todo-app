@@ -7,7 +7,7 @@ const {todo} = require('./db');
 
 
 app.post("/create",async (req,res)=>{
-    const {createPayload} = req.body;
+    const createPayload = req.body;
     const parsedPayload = createTodo.safeParse(createPayload);
     if (!parsedPayload.success) {
         res.status(411).json({
@@ -19,6 +19,10 @@ app.post("/create",async (req,res)=>{
         title : createPayload.title,
         description : createPayload.description
     })
+
+    res.json({
+        msg : "Todo created"
+    })
 })
 
 app.get("/see",async (req,res)=>{
@@ -29,7 +33,7 @@ app.get("/see",async (req,res)=>{
 })
 
 app.put("/completed",async (req,res)=>{
-    const {updatePayload} = req.body;
+    const updatePayload = req.body;
     const parsedPayload = updateTodo.safeParse(updatePayload);
     if (!parsedPayload.success) {
         res.status(411).json({
@@ -46,3 +50,5 @@ app.put("/completed",async (req,res)=>{
         msg : "Todo marked as completed"
     })
 })
+
+app.listen(3002)

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const { boolean } = require('zod');
 
-mongoose.connect('...');
+mongoose.connect('your mongodb instance/Todo-app');
 
 const todoSchema = new mongoose.Schema({
     title : String,
@@ -9,7 +8,7 @@ const todoSchema = new mongoose.Schema({
     completed : Boolean
 })
 
-const todo = mongoose.modle('todo',todoSchema)
+const todo = mongoose.model('todo',todoSchema)
 
 module.exports =  {
     todo
